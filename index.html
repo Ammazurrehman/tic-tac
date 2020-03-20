@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Tic Tac Toe</title>
+</head>
+<body>
+<header>
+    <div class="note">
+        <p>Please Note</p>
+    </div>
+    <div class="detail">
+        <p>
+            Its a multi player game.Player 1 will be indictaed by "O" and Player 2 will be indicated by "X".
+        </p>
+    </div>
+</header>
+<div id="container">
+    <h1>Tic Tac Toe</h1>
+    <ul id="board">
+        <li id="select1">+</li>
+        <li id="select2">+</li>
+        <li id="select3">+</li>
+        <li id="select4">+</li>
+        <li id="select5">+</li>
+        <li id="select6">+</li>
+        <li id="select7">+</li>
+        <li id="select8">+</li>
+        <li id="select9">+</li>
+    </ul>
+<footer>
+    <button id="reset">Reset Game</button>
+</footer>
+</div>
+
+
+
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        var x="x";
+        var o="o";
+        var turns = 0;
+        var select1 = $('#select1');
+        var select2 = $('#select2');
+        var select3 = $('#select3');
+        var select4 = $('#select4');
+        var select5 = $('#select5');
+        var select6 = $('#select6');
+        var select7 = $('#select7');
+        var select8 = $('#select8');
+        var select9 = $('#select9');
+    
+        $('#board li').click(function(){
+             if(select1.hasClass('o') && select2.hasClass('o') && select3.hasClass('o') ||
+             select4.hasClass('o') && select5.hasClass('o') && select6.hasClass('o') ||
+             select7.hasClass('o') && select8.hasClass('o') && select9.hasClass('o') ||
+             select1.hasClass('o') && select4.hasClass('o') && select7.hasClass('o') ||
+             select2.hasClass('o') && select5.hasClass('o') && select8.hasClass('o') ||
+             select3.hasClass('o') && select6.hasClass('o') && select9.hasClass('o') ||
+             select1.hasClass('o') && select5.hasClass('o') && select9.hasClass('o') ||
+             select3.hasClass('o') && select5.hasClass('o') && select7.hasClass('o') 
+             )
+             {
+               alert('Congratulations! Player 1 have won.');
+               $('#board li').text('+');
+               $('#board li').removeClass('disable');
+               $('#board li').removeClass('o');
+               $('#board li').removeClass('x');
+
+             }
+             else if(select1.hasClass('x') && select2.hasClass('x') && select3.hasClass('x') ||
+             select4.hasClass('x') && select5.hasClass('x') && select6.hasClass('x') ||
+             select7.hasClass('x') && select8.hasClass('x') && select9.hasClass('x') ||
+             select1.hasClass('x') && select4.hasClass('x') && select7.hasClass('x') ||
+             select2.hasClass('x') && select5.hasClass('x') && select8.hasClass('x') ||
+             select3.hasClass('x') && select6.hasClass('x') && select9.hasClass('x') ||
+             select1.hasClass('x') && select5.hasClass('x') && select9.hasClass('x') ||
+             select3.hasClass('x') && select5.hasClass('x') && select7.hasClass('x') 
+             )
+             {
+               alert('Congratulations! player 2 have won.');
+               $('#board li').text('+');
+
+               $('#board li').removeClass('disable');
+               $('#board li').removeClass('o');
+               $('#board li').removeClass('x');
+
+             }
+             else if(turns == 9){
+                 alert('Game Tie');
+                 $('#board li').text('+');
+
+$('#board li').removeClass('disable');
+$('#board li').removeClass('o');
+$('#board li').removeClass('x');
+turns = 0;
+             }
+             else if($(this).hasClass('disable')){
+                 alert('Already filled,select another field');
+             }
+             else if(turns%2 == 0){
+                     turns++;
+                     $(this).text(o);
+                     $(this).addClass('disable o');
+                     if(select1.hasClass('o') && select2.hasClass('o') && select3.hasClass('o') ||
+             select4.hasClass('o') && select5.hasClass('o') && select6.hasClass('o') ||
+             select7.hasClass('o') && select8.hasClass('o') && select9.hasClass('o') ||
+             select1.hasClass('o') && select4.hasClass('o') && select7.hasClass('o') ||
+             select2.hasClass('o') && select5.hasClass('o') && select8.hasClass('o') ||
+             select3.hasClass('o') && select6.hasClass('o') && select9.hasClass('o') ||
+             select1.hasClass('o') && select5.hasClass('o') && select9.hasClass('o') ||
+             select3.hasClass('o') && select5.hasClass('o') && select7.hasClass('o')){
+                              
+                          alert('congratulations player 1 has won.');
+                          turns=0;    
+                     }
+             }
+             else{
+                 turns++;
+                 $(this).text(x);
+                 $(this).addClass('disable x');
+                 if(select1.hasClass('x') && select2.hasClass('x') && select3.hasClass('x') ||
+             select4.hasClass('x') && select5.hasClass('x') && select6.hasClass('x') ||
+             select7.hasClass('x') && select8.hasClass('x') && select9.hasClass('x') ||
+             select1.hasClass('x') && select4.hasClass('x') && select7.hasClass('x') ||
+             select2.hasClass('x') && select5.hasClass('x') && select8.hasClass('x') ||
+             select3.hasClass('x') && select6.hasClass('x') && select9.hasClass('x') ||
+             select1.hasClass('x') && select5.hasClass('x') && select9.hasClass('x') ||
+             select3.hasClass('x') && select5.hasClass('x') && select7.hasClass('x') ){
+                   
+                alert('congratulations player 2 has won.');
+                          turns=0;
+                 }
+             }
+        });
+        $('#reset').on('click',function(){
+            $('#board li').text('+');
+            $('#board li').removeClass('disable');
+            $('#board li').removeClass('o');
+            $('#board li').removeClass('x');
+
+
+        });
+        
+    });
+    </script>
+</body>
+</html>
